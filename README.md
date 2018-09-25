@@ -1,5 +1,5 @@
 # Geocoder::Izi::Lookup
-Short description and motivation.
+One more useless plugin
 
 ## Usage
 How to use my plugin.
