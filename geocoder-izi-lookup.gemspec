@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = Geocoder::IziLookup::VERSION
   s.authors     = ['IzikAJ']
   s.email       = ['izikaj@gmail.com']
-  s.homepage    = ''
-  s.summary     = 'Summary of Geocoder::Izi::Lookup.'
-  s.description = 'Description of Geocoder::Izi::Lookup.'
+  s.homepage    = 'https://github.com/IzikAJ/geocoder-izi-lookup'
+  s.summary     = 'One more useless plugin'
+  s.description = 'Simple geocoder gem extention to use custom ip lookup api'
   s.license     = 'MIT'
   s.require_paths = ['lib']
 
@@ -24,6 +24,4 @@ Gem::Specification.new do |s|
 
   # s.add_dependency 'rails', '~> 4.0.0'
   s.add_dependency 'geocoder', '> 1.3.0'
-
-  # s.add_development_dependency "sqlite3"
 end
