@@ -1,4 +1,4 @@
-# Geocoder::Izi::Lookup
+# geocoder/izi_lookup
 One more useless plugin
 
 ## Usage
