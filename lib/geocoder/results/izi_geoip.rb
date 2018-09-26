@@ -45,7 +45,13 @@ module Geocoder
 
       def in_eu?
         if @data['in_eu'].present?
-          ActiveRecord::ConnectionAdapters::Column.value_to_boolean(@data['in_eu'])
+          if defined?(ActiveRecord::ConnectionAdapters::Column.value_to_boolean)
+            ActiveRecord::ConnectionAdapters::Column.value_to_boolean(@data['in_eu'])
+          elsif ActiveRecord::Type::Boolean.method_defined?(:type_cast_from_database)
+            ActiveRecord::Type::Boolean.new.type_cast_from_database(@data['in_eu'])
+          else
+            !!@data['in_eu']
+          end
         elsif defined? Country
           @request_country ||= Country[country_code]
           @request_country.present? && @request_country.in_eu?
