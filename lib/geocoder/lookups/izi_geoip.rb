@@ -13,6 +13,10 @@ module Geocoder
         "#{host}/geocode.json?ip=#{query.sanitized_text}"
       end
 
+      def cache_key(query)
+        "ip=#{query.sanitized_text}"
+      end
+
       def supported_protocols
         host =~ /https/ ? [:https] : [:http]
       end
