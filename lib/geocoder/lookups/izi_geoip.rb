@@ -6,11 +6,11 @@ module Geocoder
       end
 
       def base_query_url(query)
-        "#{host}/geocode.json?"
+        "#{host}/#{path}?"
       end
 
       def query_url(query)
-        "#{host}/geocode.json?ip=#{query.sanitized_text}"
+        "#{host}/#{path}?#{param_name}=#{query.sanitized_text}"
       end
 
       def cache_key(query)
@@ -25,7 +25,7 @@ module Geocoder
 
       def results(query)
         return [reserved_result(query.text)] if query.loopback_ip_address?
-        if (doc = fetch_data(query)).nil? or doc['country_code'].blank? or empty_result?(doc)
+        if (doc = fetch_data(query)).nil? || doc['country_code'].blank? || empty_result?(doc)
           []
         else
           [doc]
@@ -36,8 +36,16 @@ module Geocoder
         configuration[:host] || 'localhost:3000'
       end
 
+      def path
+        configuration[:path] || 'geocode.json'
+      end
+
+      def param_name
+        configuration[:param_name] || 'ip'
+      end
+
       def empty_result?(doc)
-        !doc.is_a?(Hash) or doc.keys == ['ip']
+        !doc.is_a?(Hash) || doc.keys == ['ip']
       end
 
       def reserved_result(ip)
