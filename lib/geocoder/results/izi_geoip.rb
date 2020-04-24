@@ -55,7 +55,10 @@ module Geocoder
           end
         elsif defined? Country
           @request_country ||= Country[country_code]
-          @request_country.present? && @request_country.in_eu?
+          return false if @request_country.blank?
+          return false unless @request_country.respond_to?(:in_eu?)
+
+          @request_country.in_eu?
         else
           false
         end
